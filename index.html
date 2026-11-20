@@ -270,25 +270,44 @@ button{font-family:inherit}
 .rk .cpb{display:inline-flex;align-items:center;gap:5px;padding:7px 11px;border-radius:999px;border:1px solid var(--gold);background:transparent;color:var(--wine);font:500 11px 'Jost',sans-serif;cursor:pointer;flex:none;transition:.25s}
 .rk .cpb:hover{background:var(--wine);color:#FBEFE2}
 
-/* animasi semua foto */
-.pc:not(.in) .pf,.story .ph:not(.in),.foot .pf:not(.in){clip-path:inset(100% -40px -40px -40px)}
-.pc .pf,.story .ph,.foot .pf{clip-path:inset(-40px);position:relative;transition:clip-path 1.5s cubic-bezier(.7,0,.2,1) .15s,opacity .9s ease var(--rd,0ms),transform .9s cubic-bezier(.2,.7,.2,1) var(--rd,0ms);animation:none}
-.pf img,.story .ph img,.banner img,.foot .pf img{transform:scale(1.3);transition:transform 2.2s cubic-bezier(.2,.7,.2,1) .25s}
-.pc.in .pf img,.story .ph.in img,.banner.in img,.foot .pf.in img{transform:scale(1);animation:kb 16s ease-in-out 2.4s infinite alternate}
-.pf span,.story .ph span{transform:scale(.6);opacity:0;transition:transform 1.2s cubic-bezier(.2,.9,.3,1.3) .6s,opacity 1s ease .6s}
+/* ===== animasi foto V2.6 ===== */
+.pf,.story .ph{--rr:90px}.story .ph{--rr:120px}.banner{--rr:18px}
+.pc{position:relative}
+/* bingkai lengkung: mekar dari titik tengah + miring 3D */
+.pc .pf,.story .ph,.foot .pf{position:relative;clip-path:inset(-44px round 0);transition:clip-path 1.5s cubic-bezier(.65,0,.2,1) .1s,opacity .8s ease var(--rd,0ms),transform 1.5s cubic-bezier(.2,.9,.25,1.08) var(--rd,0ms)}
+.pc:not(.in) .pf,.story .ph:not(.in),.foot .pf:not(.in){clip-path:inset(50% 50% 50% 50% round var(--rr));opacity:0;transform:perspective(800px) translateY(50px) rotateX(24deg) scale(.7)}
+.amp~.pc:not(.in) .pf{transform:perspective(800px) translateY(50px) rotateX(24deg) scale(.7) rotate(5deg)}
+.pf img,.story .ph img,.foot .pf img{transform:scale(1.55);filter:blur(12px) saturate(1.4);transition:transform 2.4s cubic-bezier(.2,.7,.2,1) .2s,filter 1.8s ease .25s}
+.pc.in .pf img,.story .ph.in img,.foot .pf.in img{transform:scale(1);filter:none;animation:kb 18s ease-in-out 2.8s infinite alternate}
+.pf span,.story .ph span{transform:scale(.5) rotate(-12deg);opacity:0;transition:transform 1.3s cubic-bezier(.2,.9,.3,1.4) .6s,opacity 1s ease .6s}
 .pc.in .pf span,.story .ph.in span,.foot .pf.in span{transform:none;opacity:1}
-.pf:after,.story .ph:after,.banner:after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);transform:translateX(-130%);animation:shine 6s ease-in-out 2.6s infinite;pointer-events:none}
-.banner{position:relative}
-.banner:not(.in){clip-path:inset(0 100% 0 0 round 18px)}
-.banner{clip-path:inset(0 0 0 0 round 18px);transition:clip-path 1.4s cubic-bezier(.7,0,.2,1) .1s,opacity .9s ease,transform .9s ease}
-.gf.rv{transform:translateY(34px) rotate(-5deg) scale(.86)}
-.gf:nth-child(even).rv{transform:translateY(34px) rotate(5deg) scale(.86)}
-.gf.rv.in{transform:none}
-.gf{transition:opacity .9s ease var(--rd,0ms),transform 1s cubic-bezier(.2,.8,.2,1.15) var(--rd,0ms),box-shadow .4s}
+/* setelah muncul: melayang halus + cahaya emas berdenyut + kilau menyapu */
+.pc.in .pf,.story .ph.in,.foot .pf.in{animation:fl 7s ease-in-out 2s infinite,glow 4.5s ease-in-out 2s infinite}
+@keyframes fl{50%{translate:0 -7px}}
+@keyframes glow{50%{box-shadow:0 0 0 4px var(--paper),0 0 0 5.5px var(--gold),0 0 30px 9px rgba(194,162,95,.55),0 16px 36px rgba(46,11,20,.3)}}
+.pf:after,.story .ph:after,.banner:after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 35%,rgba(255,246,214,.7) 50%,transparent 65%);transform:translateX(-130%);animation:shine 5.5s ease-in-out 3s infinite;pointer-events:none}
+/* bintang emas berkelip di sekitar foto mempelai */
+.pc:before,.pc:after{content:'';position:absolute;left:50%;top:-6px;width:270px;height:236px;margin-left:-135px;pointer-events:none;opacity:0;background:radial-gradient(circle,#F4DFA0 0 1.6px,transparent 3.6px) 4% 16%/11px 11px no-repeat,radial-gradient(circle,#F4DFA0 0 1.2px,transparent 3px) 12% 60%/9px 9px no-repeat,radial-gradient(circle,#F4DFA0 0 1.8px,transparent 4px) 3% 88%/12px 12px no-repeat,radial-gradient(circle,#F4DFA0 0 1.5px,transparent 3.4px) 96% 30%/10px 10px no-repeat,radial-gradient(circle,#F4DFA0 0 1.2px,transparent 3px) 90% 74%/9px 9px no-repeat}
+.pc:after{background:radial-gradient(circle,#F4DFA0 0 1.5px,transparent 3.4px) 96% 10%/10px 10px no-repeat,radial-gradient(circle,#F4DFA0 0 1.8px,transparent 4px) 8% 36%/12px 12px no-repeat,radial-gradient(circle,#F4DFA0 0 1.2px,transparent 3px) 4% 74%/9px 9px no-repeat,radial-gradient(circle,#F4DFA0 0 1.6px,transparent 3.6px) 94% 54%/11px 11px no-repeat,radial-gradient(circle,#F4DFA0 0 1.2px,transparent 3px) 88% 92%/9px 9px no-repeat}
+.pc.in:before{animation:twk 3.4s ease-in-out 2s infinite}.pc.in:after{animation:twk 3.4s ease-in-out 3.7s infinite}
+@keyframes twk{0%,100%{opacity:0;transform:scale(.85)}50%{opacity:1;transform:scale(1.06)}}
+/* banner "With Love": terbuka dari tengah seperti tirai sinema */
+.banner{position:relative;clip-path:inset(0 0 0 0 round var(--rr));transition:clip-path 1.6s cubic-bezier(.65,0,.2,1) .1s,opacity .9s ease,transform .9s ease}
+.banner:not(.in){clip-path:inset(0 50% 0 50% round var(--rr))}
+.banner img{transform:scale(1.5);filter:blur(10px);transition:transform 2.6s cubic-bezier(.2,.7,.2,1) .2s,filter 1.8s ease .25s}
+.banner.in img{transform:scale(1);filter:none;animation:kb 20s ease-in-out 2.8s infinite alternate}
+/* galeri: foto "dibagikan" jatuh bergantian kiri-kanan lalu mendarat memantul */
+.gf{transition:opacity .8s ease var(--rd,0ms),transform 1.2s cubic-bezier(.3,1.45,.5,1) var(--rd,0ms),filter .9s ease var(--rd,0ms),box-shadow .4s}
+.gf.rv{transform:translate(-46px,-70px) rotate(-14deg) scale(.6);filter:blur(6px)}
+.gf:nth-child(even).rv{transform:translate(46px,-70px) rotate(14deg) scale(.6)}
+.gf.rv.in{transform:none;filter:none}
 .gf:hover{box-shadow:0 14px 30px rgba(46,11,20,.34)}
-.gf.in img{animation:kb 18s ease-in-out 1s infinite alternate}
+.gf img{transform:scale(1.4);transition:transform 1.8s cubic-bezier(.2,.7,.2,1) .15s}
+.gf.in img{transform:scale(1);animation:kb 18s ease-in-out 1.4s infinite alternate}
+.gf figcaption{transform:translateY(101%);transition:transform .8s cubic-bezier(.2,.8,.2,1) .6s}.gf.in figcaption{transform:none}
 .gf:after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.5) 50%,transparent 60%);transform:translateX(-130%);animation:shine 7s ease-in-out 3s infinite;pointer-events:none}
 .gf:nth-child(2n):after{animation-delay:4.2s}.gf:nth-child(3n):after{animation-delay:5.4s}
+@media(prefers-reduced-motion:reduce){.pc.in .pf,.story .ph.in,.foot .pf.in{animation:none!important}.pc:before,.pc:after{display:none}}
 .std{}
 .calbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px}
 .calbtns .btn{padding:8px 14px;font-size:9.5px;letter-spacing:.12em;gap:6px;box-shadow:0 4px 12px rgba(120,86,30,.28)}
@@ -315,6 +334,37 @@ button{font-family:inherit}
 @keyframes lbin{from{opacity:0;transform:scale(.82) translateY(20px)}}
 @media(prefers-reduced-motion:reduce){.pf,.story .ph,.foot .pf,.pf:after,.story .ph:after,.banner:after,.gf:after,.gf.in img,.std,.pc.in .pf img,.story .ph.in img,.banner.in img{animation:none!important}}
 
+
+/* ===== AUTO SCROLL (dock vertikal) ===== */
+.asd{position:fixed;right:max(0px,calc(50vw - 215px));top:50%;transform:translateY(-50%);z-index:72;display:flex;align-items:center;justify-content:flex-end;font-family:'Jost',sans-serif}
+.asd .ash{width:28px;height:108px;border-radius:16px 0 0 16px;background:rgba(252,244,238,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--gold);border-right:0;color:var(--wine);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;cursor:pointer;padding:0;box-shadow:-6px 8px 22px rgba(46,11,20,.25)}
+.asd .ash span{writing-mode:vertical-rl;transform:rotate(180deg);font:500 8.5px 'Jost',sans-serif;letter-spacing:.3em}
+.asd.run .ash{animation:asg 2.4s ease-in-out infinite}.asd.run .ash svg{animation:asb 1.2s ease-in-out infinite}
+@keyframes asb{50%{transform:translateY(4px)}}
+@keyframes asg{50%{box-shadow:-6px 8px 22px rgba(46,11,20,.25),0 0 18px 3px rgba(194,162,95,.6)}}
+.asd .asp{display:none;width:50px;margin-right:8px;padding:8px 0 12px;border-radius:26px;background:rgba(252,244,238,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--gold);box-shadow:0 0 0 3px rgba(252,244,238,.55),0 14px 34px rgba(46,11,20,.32);flex-direction:column;align-items:center;gap:7px;color:var(--wine)}
+.asd.open .asp{display:flex;animation:asin .45s cubic-bezier(.2,.9,.3,1.2)}.asd.open .ash{display:none}
+@keyframes asin{from{opacity:0;transform:translateX(26px)}}
+.asd button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.asd .asx{width:30px;height:24px;display:flex;align-items:center;justify-content:center;opacity:.7}
+.asd .asm{width:40px;height:40px;border-radius:50%;background:var(--wine);color:#FBEFE2!important;border:1px solid var(--gold)!important;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(74,18,32,.35)}
+.asd.run .asm{animation:asr 2s ease-out infinite}
+@keyframes asr{0%{box-shadow:0 0 0 0 rgba(194,162,95,.7)}100%{box-shadow:0 0 0 13px rgba(194,162,95,0)}}
+.asd .asl{font:600 9px 'Jost',sans-serif;letter-spacing:.2em;font-style:normal;margin-right:-.2em}
+.asd .ass{display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:7px;border-top:1px solid rgba(194,162,95,.7);width:30px}
+.asd .ass button{width:28px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.asd .ass button:active{background:rgba(194,162,95,.25)}
+.asd .asdots{display:flex;flex-direction:column;gap:5px;padding:2px 0}
+.asd .asdots u{width:5px;height:5px;border-radius:50%;background:rgba(143,116,113,.35);transition:.3s}.asd .asdots u.a{background:var(--gold);box-shadow:0 0 6px rgba(194,162,95,.9)}
+.asd .asb{position:absolute;right:calc(100% + 12px);top:50%;width:200px;padding:14px 14px 12px;border-radius:18px;background:var(--paper);border:1px solid var(--gold);box-shadow:0 0 0 3px rgba(252,244,238,.6),0 14px 34px rgba(46,11,20,.3);text-align:left;opacity:0;pointer-events:none;transform:translate(16px,-50%);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.9,.3,1.2)}
+.asd.tip .asb{opacity:1;pointer-events:auto;transform:translate(0,-50%)}
+.asd .asb:after{content:'';position:absolute;right:-6px;top:50%;width:10px;height:10px;margin-top:-5px;background:var(--paper);border-top:1px solid var(--gold);border-right:1px solid var(--gold);transform:rotate(45deg)}
+.asd .asb b{display:block;font:600 12px 'Cinzel',serif;letter-spacing:.1em;color:var(--wine);text-transform:uppercase}
+.asd .asb p{margin:5px 0 10px;font:400 12px/1.55 'Jost',sans-serif;color:var(--text)}
+.asd .asb .ab{display:flex;gap:6px;align-items:center}
+.asd .asb .ab button{padding:7px 14px;border-radius:999px;font:500 10.5px 'Jost',sans-serif;letter-spacing:.1em}
+.asd .asb .ab .y{background:var(--wine);color:#FBEFE2;border:1px solid var(--gold)}.asd .asb .ab .n{color:var(--muted)}
+@media(prefers-reduced-motion:reduce){.asd.run .ash,.asd.run .ash svg,.asd.run .asm{animation:none}}
 
 /* ===== PREVIEW BAR, TOAST, MODAL ===== */
 #pvbar{position:fixed;top:0;left:0;right:0;z-index:2147483200;height:34px;background:#1f2430;color:#fff;font:400 11px 'Jost',sans-serif;display:flex;align-items:center;gap:8px;padding:0 10px;overflow-x:auto;white-space:nowrap}
@@ -913,9 +963,16 @@ function buildPublic() {
     </main>
     <nav id="bnav" class="bnav ${coverDone ? '' : 'hide'}"></nav>
     <button id="mbtn" class="mbtn hide" data-act="music" aria-label="Musik"></button>
+    <div id="asdock" class="asd ${coverDone ? '' : 'hide'}">
+      <div class="asb"><b>Baca otomatis?</b><p>Aktifkan Auto Scroll agar undangan bergulir sendiri. Bisa dimatikan kapan saja.</p><div class="ab"><button type="button" class="y" data-act="asok">Aktifkan</button><button type="button" class="n" data-act="aslater">Nanti</button></div></div>
+      <button type="button" class="ash" data-act="asdock" aria-label="Buka pengaturan auto scroll">${ic('chevd', 16)}<span>AUTO SCROLL</span></button>
+      <div class="asp"><button type="button" class="asx" data-act="asdock" aria-label="Tutup">${ic('chevr', 16)}</button>
+        <button type="button" class="asm" data-act="astoggle" aria-label="Auto scroll hidup atau mati">${ic('play', 20)}</button><i class="asl">OFF</i>
+        <div class="ass"><button type="button" data-act="asfast" aria-label="Lebih cepat">${ic('plus', 14)}</button><div class="asdots"><u></u><u></u><u></u></div><button type="button" data-act="asslow" aria-label="Lebih pelan">${ic('minus', 14)}</button></div></div>
+    </div>
   </div>`;
   document.body.classList.toggle('lock', !coverDone);
-  fxS = fxT = 0; startFx(); init3D();
+  fxS = fxT = 0; startFx(); init3D(); asSet(false);
   renderAllPublic();
   if (SPY) SPY.disconnect();
   SPY = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const id = e.target.id, map = { savedate: 'acara', cerita: 'galeri', live: 'kado' }, t = map[id] || id; $$('#bnav button').forEach(b => b.classList.toggle('on', b.dataset.t === t)); } }), { rootMargin: '-45% 0px -50% 0px' });
@@ -1182,11 +1239,70 @@ ACT.open = () => {
   c.classList.add('open');
   setTimeout(() => { c.classList.add('gone'); }, 2600);
   try { renderMusicBtn(); playMusic(); } catch (e) { console.warn(e); }
+  try { asOpened(); } catch (e) { console.warn(e); }
   try { reveal(); } catch (e) { console.warn(e); }
   if (G.id && !G.opened) { G.opened = true; try { Promise.resolve(Store.update('guests', G.id, { sudahBuka: true, dibukaPada: Store.now() })).catch(() => { }); } catch { } }
 };
 ACT.goto = el => { const s = $('#' + el.dataset.t); if (s) s.scrollIntoView({ behavior: 'smooth' }); };
 ACT.music = () => musicOn ? stopMusic() : playMusic();
+
+/* ===== AUTO SCROLL: tamu bisa hidup/mati, atur kecepatan ===== */
+Object.assign(ICONS, { chevd: '<path d="M6 5l6 6 6-6"/><path d="M6 12l6 6 6-6"/>', chevr: '<path d="M9 5l7 7-7 7"/>', minus: '<path d="M5 12h14"/>' });
+const AS = { on: false, lvl: 1, spd: [26, 46, 80, 125], raf: 0, last: 0, pos: null, exp: 0, hold: 0, tipShown: false, auto: false, tipT: 0, colT: 0 };
+const asEl = () => document.getElementById('asdock');
+function asUI() {
+  const d = asEl(); if (!d) return;
+  d.classList.toggle('run', AS.on);
+  const m = d.querySelector('.asm'); if (m) m.innerHTML = ic(AS.on ? 'pause' : 'play', 20);
+  const l = d.querySelector('.asl'); if (l) l.textContent = AS.on ? 'ON' : 'OFF';
+  d.querySelectorAll('.asdots u').forEach((u, i) => u.classList.toggle('a', i <= AS.lvl));
+}
+/* berhenti sementara saat tamu mengisi formulir, membuka foto/modal, atau tab disembunyikan */
+function asBlocked() {
+  const a = document.activeElement, lb = document.getElementById('lightbox'), md = document.getElementById('modal');
+  return document.hidden || (lb && lb.children.length) || (md && md.children.length) || (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.closest && a.closest('#root'));
+}
+function asTick(t) {
+  const d = asEl(), root = document.getElementById('root');
+  if (!AS.on || !d || !root || !coverDone) { AS.raf = 0; return; }
+  const dt = Math.min(64, t - (AS.last || t)); AS.last = t; const now = performance.now();
+  if (AS.pos != null && Math.abs(root.scrollTop - AS.exp) > 3) { AS.hold = now + 1800; AS.pos = null; } /* digeser tamu / tombol navigasi */
+  if (now < AS.hold || asBlocked()) { AS.pos = null; AS.raf = requestAnimationFrame(asTick); return; }
+  if (AS.pos == null) AS.pos = root.scrollTop;
+  AS.pos += AS.spd[AS.lvl] * dt / 1000;
+  const max = root.scrollHeight - root.clientHeight;
+  if (AS.pos >= max - 1) { root.scrollTop = max; asSet(false); return; }
+  root.scrollTop = AS.pos; AS.exp = root.scrollTop;
+  AS.raf = requestAnimationFrame(asTick);
+}
+function asSet(v) {
+  AS.on = !!v; AS.pos = null; AS.last = 0; AS.hold = 0; cancelAnimationFrame(AS.raf); AS.raf = 0; asUI();
+  if (AS.on) { asTip(false); AS.raf = requestAnimationFrame(asTick); }
+}
+function asTip(v) {
+  const d = asEl(); if (!d) return; clearTimeout(AS.tipT); d.classList.toggle('tip', !!v);
+  if (v) { AS.tipShown = true; AS.tipT = setTimeout(() => asTip(false), 9000); }
+}
+function asKeep() { /* panel menutup sendiri agar tidak menutupi undangan */
+  clearTimeout(AS.colT); const d = asEl();
+  if (d && d.classList.contains('open')) AS.colT = setTimeout(() => { const e = asEl(); if (e) e.classList.remove('open'); }, 5000);
+}
+function asOpened() { /* dipanggil saat amplop dibuka */
+  const d = asEl(); if (!d) return; d.classList.remove('hide');
+  /* langsung ON setelah animasi amplop selesai; tamu tetap bisa mematikannya lewat tab di sisi kanan */
+  if (!AS.auto) { AS.auto = true; setTimeout(() => { if (asEl() && coverDone && !AS.on) { AS.lvl = 3; asSet(true); } }, 2800); }
+  if (!AS.tipShown) setTimeout(() => { const e = asEl(); if (e && coverDone && !AS.on && !e.classList.contains('open')) asTip(true); }, 4500);
+}
+ACT.astoggle = () => { asSet(!AS.on); asKeep(); };
+ACT.asfast = () => { if (AS.lvl < 2) AS.lvl++; asUI(); asKeep(); };
+ACT.asslow = () => { AS.lvl = Math.max(0, AS.lvl - 1); asUI(); asKeep(); };
+ACT.asdock = () => { const d = asEl(); if (!d) return; d.classList.toggle('open'); asTip(false); asKeep(); };
+ACT.asok = () => { asSet(true); const d = asEl(); if (d) d.classList.remove('open'); };
+ACT.aslater = () => asTip(false);
+['wheel', 'touchstart', 'touchmove', 'touchend', 'pointerdown', 'keydown'].forEach(ev => addEventListener(ev, e => {
+  if (AS.on && !(e.target && e.target.closest && e.target.closest('#asdock'))) AS.hold = performance.now() + 1800;
+}, { passive: true, capture: true }));
+
 ACT.copy = el => copyText(el.dataset.v);
 ACT.gifttoggle = el => { const g = $('#gl'); if (g) { g.classList.toggle('open'); el.textContent = g.classList.contains('open') ? 'Tutup' : 'Klik disini'; reveal(); } };
 ACT.gal = el => { LB.i = Number(el.dataset.i); lbShow(); };
