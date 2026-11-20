@@ -1290,7 +1290,7 @@ function asKeep() { /* panel menutup sendiri agar tidak menutupi undangan */
 function asOpened() { /* dipanggil saat amplop dibuka */
   const d = asEl(); if (!d) return; d.classList.remove('hide');
   /* langsung ON setelah animasi amplop selesai; tamu tetap bisa mematikannya lewat tab di sisi kanan */
-  if (!AS.auto) { AS.auto = true; setTimeout(() => { if (asEl() && coverDone && !AS.on) { AS.lvl = 3; asSet(true); } }, 2800); }
+  if (!AS.auto) { AS.auto = true; setTimeout(() => { if (asEl() && coverDone && !AS.on) { AS.lvl = 2; asSet(true); } }, 2800); }
   if (!AS.tipShown) setTimeout(() => { const e = asEl(); if (e && coverDone && !AS.on && !e.classList.contains('open')) asTip(true); }, 4500);
 }
 ACT.astoggle = () => { asSet(!AS.on); asKeep(); };
